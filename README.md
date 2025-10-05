@@ -9,7 +9,7 @@ To demonstrate how to use the ROS2 Nav2 stack on a real mobile robot to perform 
 
 This demo is for a differential drive robot with a 2D Lidar.
 
-## Creating The Environment Map
+## Mapping Your House (/Office/Shed...)
 
 ### Requirements
 
@@ -36,3 +36,13 @@ Check the map has been saved correctly and stop slam toolbox.
 ```ros2 launch nav2_bringup bringup_launch.py map:=./my_house.yaml params_file:=./src/ros2_nav2_demo/nav2_params.yaml```
 
 Within rviz2 you must set approximately the initial pose. It's the button marked "2D Pose Estimate" in the top panel of buttons. Use the mouse to select the initial pose on the map. You click down on the mouse, and an arrow should appear. With the mouse button still held down you can rotate the arrow and you need to rotate it so that it is pointing in the current direction of your robot. When you are happy that the direction is correct, release the mouse button. This initialises the pose. If you make a mistake and initialise in the wrong location, just repeat the process.
+
+## References
+
+YouTube: Easy SLAM with ROS using slam_toolbox, Articulated Robotics, Dec 10 2022, https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=747s
+
+YouTube: Making robot navigation easy with Nav2 and ROS!, Articulated Robotics, Jan 06 2023, https://www.youtube.com/watch?v=jkoGkAd0GYk&t=379s
+
+A Concise Introduction to Robot Programming with ROS2, Francisco Martin Rico, 2023
+
+Mastering ROS2 for Robotics Programming, L. Joseph, J. Cacace, (Fourth Edition) 2025
