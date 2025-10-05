@@ -35,7 +35,7 @@ Launch rviz2. Add topic /map. Add topic Axes, and for the Axes property set the 
 
 Drive the robot around your environment, white represents clear space, black is obstacle (wall, furniture etc), grey is unknown. You will want to drive around near unknown areas to fill in the map.
 
-Save the map:
+Save the map (don't stop the toolbox ... use another terminal):
 ```ros2 run nav2_map_server map_saver_cli -f my_house```
 
 Check the map has been saved correctly and stop slam toolbox.
@@ -45,6 +45,15 @@ Check the map has been saved correctly and stop slam toolbox.
 ```ros2 launch nav2_bringup bringup_launch.py map:=./my_house.yaml params_file:=./src/ros2_nav2_demo/nav2_params.yaml```
 
 Within rviz2 you must set approximately the initial pose. It's the button marked "2D Pose Estimate" in the top panel of buttons. Use the mouse to select the initial pose on the map. You click down on the mouse, and an arrow should appear. With the mouse button still held down you can rotate the arrow and you need to rotate it so that it is pointing in the current direction of your robot. When you are happy that the direction is correct, release the mouse button. This initialises the pose. If you make a mistake and initialise in the wrong location, just repeat the process.
+
+Optional Steps:
+For the next step (autonomous navigating) we will want to see the proposed path. So in rviz2 click on Add, select by topic (in the dialog box) and find and select /plan/Path. The color is green by default, you might want to change it purple to have it stand out (given that red/green/blue are used by the Axes).
+Add /global_costmap/costmap/Map. Change Color Scheme property to costmap. You should see a color map indicating preferred areas of travel versus avoided areas.
+
+To Navigate, click on 2D Goal Pose (in RViz2). Position the mouse to where you would like it to go, click and hold down mouse button. An arrow will appear, you can then move the mouse to set the orientation and release mouse button. All being well....Off you go...
+
+Be careful of your goal poses, our 2D Lidar only "sees" in its plane, so if you have obstructions above or below, NAV2 will not know about this. I choose goal poses such that a sensible route will not be near any obstacles, apart from doors/walls which it can detect.
+
 
 ## References
 
