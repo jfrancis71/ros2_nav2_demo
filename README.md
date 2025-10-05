@@ -16,7 +16,16 @@ This demo is for a differential drive robot with a 2D Lidar.
 You should setup your robot so that it can receive TwistStamped messages on topic /cmd_vel. It should be broadcasting Lidar2D messages on topic /scan.
 Check odometry
 
+``` mermaid
+    flowchart LR
+    Robot --/cmd_vel[TwistStamped] --> SLAM-Toolbox
+    Robot --/scan[LaserScan] --> SLAM-Toolbox
+    Robot --/tf odom --> SLAM-Toolbox
+    SLAM-Toolbox --/map[OccupancyGrid] --> RViz2
+``` 
+
 ```ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/ros2_nav2_demo/mapper_params_online_async.yaml```
+
 The params file comes from the slam toolbox with a few alterations:
 We uncomment start_pose.
 base_frame is altered from base_footprint to base_link
