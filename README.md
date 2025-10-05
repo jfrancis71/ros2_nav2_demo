@@ -20,6 +20,7 @@ Check odometry
     flowchart LR
     Robot --/cmd_vel[TwistStamped] --> SLAM-Toolbox
     Robot --/scan[LaserScan] --> SLAM-Toolbox
+    Robot --/odom[Odometry] --> SLAM-Toolbox???????
     Robot --/tf odom --> SLAM-Toolbox
     SLAM-Toolbox --/map[OccupancyGrid] --> RViz2
 ``` 
@@ -54,6 +55,7 @@ To Navigate, click on 2D Goal Pose (in RViz2). Position the mouse to where you w
 
 Be careful of your goal poses, our 2D Lidar only "sees" in its plane, so if you have obstructions above or below, NAV2 will not know about this. I choose goal poses such that a sensible route will not be near any obstacles, apart from doors/walls which it can detect.
 
+Have fun!
 
 ## References
 
@@ -64,3 +66,12 @@ YouTube: Making robot navigation easy with Nav2 and ROS!, Articulated Robotics, 
 A Concise Introduction to Robot Programming with ROS2, Francisco Martin Rico, 2023
 
 Mastering ROS2 for Robotics Programming, L. Joseph, J. Cacace, (Fourth Edition) 2025
+
+Useful discussion on odometry:
+https://docs.nav2.org/setup_guides/odom/setup_odom_gz_classic.html
+
+SLAM Toolbox:
+https://github.com/SteveMacenski/slam_toolbox/tree/ros2
+
+NAV2:
+https://docs.nav2.org
