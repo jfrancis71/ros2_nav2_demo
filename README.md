@@ -7,7 +7,7 @@ Currently in development...
 
 To demonstrate how to use the ROS2 Nav2 stack on a real mobile robot to perform autonomous navigation. In addition to the NAV2 stack we will be using the SLAM-Toolbox to create our map of the environment.
 
-This demo is for a differential drive robot with a 2D Lidar.
+This demo is for a differential drive robot with a 2D Lidar. The assumed setup is an actual robot running ROS2 and a desktop running ROS2 with the NAV2 stack connected over a Wifi network.
 
 ## Mapping Your House (/Office/Shed...)
 
