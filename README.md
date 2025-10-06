@@ -27,6 +27,8 @@ Check odometry
     TF --/tf:[base_link->map] --> RViz2
 ``` 
 
+To start mapping:
+
 ```ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/ros2_nav2_demo/mapper_params_online_async.yaml```
 
 The params file comes from the slam toolbox with a few alterations:
@@ -44,6 +46,25 @@ Save the map (don't stop the toolbox ... use another terminal):
 Check the map has been saved correctly and stop slam toolbox.
 
 ## Running Autonomous Navigation
+
+``` mermaid
+    flowchart LR
+    Robot --/scan[LaserScan] --> Nav2
+    Robot --/tf:[odom->base_link] --> TF
+    Robot --/odom[Odometry] --> Nav2
+    Nav2 --/map[OccupancyGrid] --> RViz2
+    Nav2 --/tf:[map->odom] --> TF
+    Nav2 --/plan[Path] --> RViz2
+    Nav2 --/global_costmap/costmap[OccupancyGrid] --> RViz2
+    Nav2 --/cmd_vel[TwistStamped] --> Robot
+    TF --/tf:[odom->base_link] --> Nav2
+    TF --/tf:[base_link->map] --> RViz2
+    RViz2 --/initialpose[PoseWithCovarianceStamped] --> Nav2
+    RViz2 --/goal_pose[PoseStamped] --> Nav2
+``` 
+
+
+To start:
 
 ```ros2 launch nav2_bringup bringup_launch.py map:=./my_house.yaml params_file:=./src/ros2_nav2_demo/nav2_params.yaml```
 
