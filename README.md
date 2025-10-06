@@ -18,11 +18,13 @@ Check odometry
 
 ``` mermaid
     flowchart LR
-    Robot --/cmd_vel[TwistStamped] --> SLAM-Toolbox
+    TeleopTwistJoy --/cmd_vel[TwistStamped] --> Robot
     Robot --/scan[LaserScan] --> SLAM-Toolbox
-    Robot --/odom[Odometry] --> SLAM-Toolbox???????
-    Robot --/tf odom --> SLAM-Toolbox
+    Robot --/tf:[odom->base_link] --> TF
     SLAM-Toolbox --/map[OccupancyGrid] --> RViz2
+    SLAM-Toolbox --/tf:[map->odom] --> TF
+    TF --/tf:[odom->base_link] --> SLAM-Toolbox
+    TF --/tf:[base_link->map] --> RViz2
 ``` 
 
 ```ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/ros2_nav2_demo/mapper_params_online_async.yaml```
