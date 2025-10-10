@@ -124,6 +124,13 @@ nav2_params.yaml is a copy of nav2_bringup/params/nav2_params.yaml with the foll
 * All references to base_footprint changed to base_link
 * All controllers have enable_stamped_cmd_vel set to true
 
+### Demo Notes
+
+Example of republishing a video http web stream as a ROS2 image topic:
+```
+ros2 run image_publisher image_publisher_node http://192.168.1.213/video.mjpg --ros-args -r /image_raw:=/ipad/image
+```
+
 ## References
 
 YouTube: Easy SLAM with ROS using slam_toolbox, Articulated Robotics, Dec 10 2022, https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=747s
