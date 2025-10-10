@@ -32,19 +32,18 @@ Check odometry
 
 To start mapping:
 
-```ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/ros2_nav2_demo/mapper_params_online_async.yaml```
-
-The params file comes from the slam toolbox with a few alterations:
-We uncomment start_pose.
-base_frame is altered from base_footprint to base_link
-minimum_travel_distance from 0.5 to 0.25. Not required, but I think it works better like this, especially in smaller environments.
+```
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/ros2_nav2_demo/mapper_params_online_async.yaml
+```
 
 Launch rviz2. Add topic /map. Add topic Axes, and for the Axes property set the Reference Frame to 'base_link'. This is under 'By Display Type/rviz_default_plugins/Axes' Add dialog box. I like to set the view to TopDownOrtho (and zoom in), this is under the views window.
 
 Drive the robot around your environment, white represents clear space, black is obstacle (wall, furniture etc), grey is unknown. You will want to drive around near unknown areas to fill in the map.
 
 Save the map (don't stop the toolbox ... use another terminal):
-```ros2 run nav2_map_server map_saver_cli -f my_house```
+```
+ros2 run nav2_map_server map_saver_cli -f my_house
+```
 
 Check the map has been saved correctly and stop slam toolbox.
 
@@ -69,7 +68,9 @@ Check the map has been saved correctly and stop slam toolbox.
 
 To launch Nav2:
 
-```ros2 launch nav2_bringup bringup_launch.py map:=./my_house.yaml params_file:=./src/ros2_nav2_demo/nav2_params.yaml```
+```
+ros2 launch nav2_bringup bringup_launch.py map:=./my_house.yaml params_file:=./src/ros2_nav2_demo/nav2_params.yaml
+```
 
 Within rviz2:
 
@@ -96,6 +97,21 @@ For below steps, I'm assuming you still have the map and Axes objects present in
 Be careful of your goal poses, our 2D Lidar only "sees" in its plane, so if you have obstructions above or below, NAV2 will not know about this. I choose goal poses such that a sensible route will not be near any obstacles, apart from doors/walls which it can detect.
 
 Have fun!
+
+## Technical Notes
+
+My robot does not use base_footprint frame, just base_link. Also my robot uses TwistStamped on cmd_vel.
+
+mapper_params_online_async.yaml is a copy of /slam_toolbox/config/mapper_params_online_async.yaml with the following alterations:
+
+* start_pose uncommented (we must uncomment either this or map_start_at_dock for slam toolbox to work). I choose start at origin.
+* base_frame altered from base_footprint to base_link
+* minimum_travel_distance altered from 0.5 to 0.25 (Works better for me in small environment)
+
+nav2_params.yaml is a copy of nav2_bringup/params/nav2_params.yaml with the following alterations:
+
+* All references to base_footprint changed to base_link
+* All controllers have enable_stamped_cmd_vel set to true
 
 ## References
 
