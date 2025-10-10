@@ -12,14 +12,20 @@ This demo is for a differential drive robot with a 2D Lidar. The assumed setup i
 
 Nav2 is a highly configurable, and somewhat complex piece of software. This demonstration does not aim at covering Nav2 in detail, but the minimum to get a self driving robot working.
 
+This has been tested on ROS2 Jazzy.
+
 ## Requirements
 
-* You should setup your robot so that it can receive TwistStamped messages on topic /cmd_vel.
-* It should be broadcasting Lidar2D messages on topic /scan. Either this can broadcast directly on frame base_link (if lidar is physically mounted to respect ROS2 conventions). Alternately you can use a static transform. My robot publishes on base_laser and I have a static transform from base_laser to base_link (to correct for physical lidar orientation). The result should be a /scan message in the base_link frame should have objects in front of the robot correspond to +x direction.
-* You should be publishing Odometry messages on topic /odom. You should also be publishing a base_link -> odom transform. Make sure you're odometry is well calibrated. Turn the robot 360 degrees in the real world. Does the odometry update with at least approximately
-a 360 degree turn? If it does not NAV2 will be unusable.
+You should have NAV2 and SLAM-Toolbox installed. Use what is appropriate for your preferred ROS2 install.
 
-See section Technical Notes for configuration details.
+* Your robot should receive TwistStamped messages on topic /cmd_vel.
+* You should be publishing Odometry messages on topic /odom. The frame_id should be odom and the child_frame_id should be base_link. You should also be publishing a base_link -> odom transform. Make sure your odometry is well calibrated. Turn the robot 360 degrees in the real world. Does the odometry update with at least approximately
+a 360 degree turn? If it does not NAV2 will be unusable.
+* It should be broadcasting Lidar2D messages on topic /scan. Either this can broadcast directly on frame base_link (if lidar is physically mounted to respect ROS2 conventions). Alternately you can use a static transform. My robot publishes topic /scan on base_laser and I have a static transform from base_laser to base_link (to correct for physical lidar orientation). The result should be a /scan message in the base_link frame should have objects in front of the robot correspond to +x direction.
+
+My robot is using the ROS2 Control differential drive controller. Here is a link to my controller description: https://github.com/jfrancis71/ros2_mobile_lego/blob/main/thomas/config/controller_description.yaml. You may find it helpful for meeting the first two conditions above.
+
+See section Technical Notes for parameter details.
 
 ## Mapping Your House (/Office/Shed...)
 
@@ -69,6 +75,7 @@ Check the map has been saved correctly and stop slam toolbox.
     RViz2 --/goal_pose[PoseStamped] --> Nav2
 ``` 
 
+Before starting nav2, you should bring up rviz2, change topic to /map (it will not be available as a drop down as it is not currently being published). I do not know why you must start in this order. But if you start Nav2 first and then rviz2, rviz2 does not display the map (even if you have set the topic subscription properly).
 
 To launch Nav2:
 
