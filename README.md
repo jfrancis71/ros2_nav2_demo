@@ -40,6 +40,8 @@ See section Technical Notes for parameter details.
     TF --/tf:[base_link->map] --> RViz2
 ``` 
 
+Before starting mapping you might want to position your robot in a pose which naturally aligns with your environment (eg in middle of room pointing perpendicular to wall). Then reset odometry, I just restart the differential drive controller (there may be a better way).
+
 To start mapping:
 
 ```
