@@ -2,7 +2,10 @@
 
 Demonstration of how to use the ROS2 Nav2 stack for navigation
 
-Currently in development...
+## YouTube Tutorial
+<a href="https://www.youtube.com/watch?v=xmR9_JrH2SY">
+    <img src="https://img.youtube.com/vi/xmR9_JrH2SY/0.jpg" height=320>
+</a>
 
 ## Goals
 
