@@ -40,7 +40,7 @@ See section Technical Notes for parameter details.
     SLAM-Toolbox --/map[OccupancyGrid] --> RViz2
     SLAM-Toolbox --/tf:[map->odom] --> TF
     TF --/tf:[odom->base_link] --> SLAM-Toolbox
-    TF --/tf:[base_link->map] --> RViz2
+    TF --/tf:[map->base_link] --> RViz2
 ``` 
 
 Before starting mapping you might want to position your robot in a pose which naturally aligns with your environment (eg in middle of room pointing perpendicular to wall). Then reset odometry, I just restart the differential drive controller (there may be a better way).
@@ -75,7 +75,7 @@ Check the map has been saved correctly and stop slam toolbox.
     Nav2 --/global_costmap/costmap[OccupancyGrid] --> RViz2
     Nav2 --/cmd_vel[TwistStamped] --> Robot
     TF --/tf:[odom->base_link] --> Nav2
-    TF --/tf:[base_link->map] --> RViz2
+    TF --/tf:[map->base_link] --> RViz2
     RViz2 --/initialpose[PoseWithCovarianceStamped] --> Nav2
     RViz2 --/goal_pose[PoseStamped] --> Nav2
 ``` 
