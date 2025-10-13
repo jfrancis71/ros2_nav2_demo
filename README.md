@@ -22,9 +22,9 @@ This has been tested on ROS2 Jazzy.
 You should have NAV2 and SLAM-Toolbox installed. Use what is appropriate for your preferred ROS2 install.
 
 * Your robot should receive TwistStamped messages on topic /cmd_vel.
-* You should be publishing Odometry messages on topic /odom. The frame_id should be odom and the child_frame_id should be base_link. You should also be publishing a base_link -> odom transform. Make sure your odometry is well calibrated. Turn the robot 360 degrees in the real world. Does the odometry update with at least approximately
+* You should be publishing Odometry messages on topic /odom. You should also be publishing a odom -> base_link transform. Make sure your odometry is well calibrated. Turn the robot 360 degrees in the real world. Does the odometry update with at least approximately
 a 360 degree turn? If it does not NAV2 will be unusable.
-* It should be broadcasting Lidar2D messages on topic /scan. Either this can broadcast directly on frame base_link (if lidar is physically mounted to respect ROS2 conventions). Alternately you can use a static transform. My robot publishes topic /scan on base_laser and I have a static transform from base_laser to base_link (to correct for physical lidar orientation). The result should be a /scan message in the base_link frame should have objects in front of the robot correspond to +x direction.
+* It should be broadcasting Lidar2D messages on topic /scan. Either this can broadcast directly on frame base_link (if lidar is physically mounted to respect ROS2 conventions). Alternately you can use a static transform. My robot publishes topic /scan in frame base_laser and I have a static transform from base_link to base_laser (to correct for physical lidar orientation). The result should be a /scan message in the base_link frame has objects in front of the robot correspond to +x direction.
 
 My robot is using the ROS2 Control differential drive controller. Here is a link to my controller description: https://github.com/jfrancis71/ros2_mobile_lego/blob/main/thomas/config/controller_description.yaml. You may find it helpful for meeting the first two conditions above.
 
