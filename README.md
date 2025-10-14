@@ -128,6 +128,11 @@ nav2_params.yaml is a copy of nav2_bringup/params/nav2_params.yaml with the foll
 
 * All references to base_footprint changed to base_link
 * All controllers have enable_stamped_cmd_vel set to true
+ 
+If you have started Nav2 first and then rviz2 (ie in a different order to the one recommended previously) it is possible to force Nav2 to republish the map so it will then display in rviz2:
+```
+ros2 service call /map_server/load_map nav2_msgs/srv/LoadMap "{map_url: my_house.yaml}"
+```
 
 ### Demo Notes
 
