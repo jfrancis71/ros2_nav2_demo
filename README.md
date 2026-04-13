@@ -80,7 +80,7 @@ Check the map has been saved correctly and stop slam toolbox.
     RViz2 --/goal_pose[PoseStamped] --> Nav2
 ``` 
 
-Before starting nav2, you should bring up rviz2, change topic to /map (it will not be available as a drop down as it is not currently being published). I do not know why you must start in this order. But if you start Nav2 first and then rviz2, rviz2 does not display the map (even if you have set the topic subscription properly).
+Before starting NAV2, you should bring up rviz2, change global fixeed frame to map. Then add a map visualization and set the topic name to "map". If you have started NAV2 first (and then rviz2) you can set the Map durability to "Transient Local" to retrieve the previously published map.
 
 To launch Nav2:
 
