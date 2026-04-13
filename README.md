@@ -134,6 +134,8 @@ If you have started Nav2 first and then rviz2 (ie in a different order to the on
 ros2 service call /map_server/load_map nav2_msgs/srv/LoadMap "{map_url: my_house.yaml}"
 ```
 
+Alternately you can set Durability to Transient-Local for the map which will retrieve the last published map from NAV2.
+
 ## References
 
 YouTube: Easy SLAM with ROS using slam_toolbox, Articulated Robotics, Dec 10 2022, https://www.youtube.com/watch?v=ZaiA3hWaRzE&t=747s
